@@ -1,0 +1,111 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vibetrack"
+version = "0.1.0"
+description = "AI-powered Git change analyzer - Understand your code changes before pushing to GitHub!"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Alireza Taheri Fakhr", email = "alirezataherifakhr@gmail.com"}
+]
+maintainers = [
+    {name = "Alireza Taheri Fakhr", email = "alirezataherifakhr@gmail.com"}
+]
+keywords = ["git", "diff", "ai", "analysis", "cli", "developer-tools", "code-review"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Version Control :: Git",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "rich>=13.0.0",
+    "typer>=0.9.0",
+    "requests>=2.28.0",
+    "cryptography>=41.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/alireza-taheriF/VibeTrack"
+Repository = "https://github.com/alireza-taheriF/VibeTrack"
+Documentation = "https://github.com/alireza-taheriF/VibeTrack#readme"
+"Bug Reports" = "https://github.com/alireza-taheriF/VibeTrack/issues"
+Changelog = "https://github.com/alireza-taheriF/VibeTrack/blob/main/CHANGELOG.md"
+
+[project.scripts]
+vibetrack = "vibetrack.cli_en:app"
+vt = "vibetrack.cli_en:app"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "isort>=5.0.0",
+    "flake8>=5.0.0",
+    "mypy>=1.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["vibetrack*"]
+exclude = ["tests*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["vibetrack"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=vibetrack --cov-report=term-missing --cov-report=html"

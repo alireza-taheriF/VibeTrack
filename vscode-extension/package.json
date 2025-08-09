@@ -1,0 +1,134 @@
+{
+  "name": "vibetrack-vscode",
+  "displayName": "VibeTrack - دستیار شخصی برای Vibe Coders",
+  "description": "AI-powered Git change analyzer directly in VS Code",
+  "version": "0.1.0",
+  "publisher": "alireza-taheri",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "SCM Providers"
+  ],
+  "keywords": [
+    "git",
+    "diff",
+    "ai",
+    "analysis",
+    "persian",
+    "vibe-coding"
+  ],
+  "activationEvents": [
+    "onCommand:vibetrack.analyzeChanges",
+    "onCommand:vibetrack.analyzeStaged",
+    "onCommand:vibetrack.compareCommits",
+    "onCommand:vibetrack.analyzeCommitMessage"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vibetrack.analyzeChanges",
+        "title": "😵 چی شده؟! - تحلیل تغییرات",
+        "category": "VibeTrack"
+      },
+      {
+        "command": "vibetrack.analyzeStaged",
+        "title": "🎵 تحلیل فایل‌های Staged",
+        "category": "VibeTrack"
+      },
+      {
+        "command": "vibetrack.compareCommits",
+        "title": "📖 مقایسه کامیت‌ها",
+        "category": "VibeTrack"
+      },
+      {
+        "command": "vibetrack.analyzeCommitMessage",
+        "title": "📝 تحلیل پیام کامیت",
+        "category": "VibeTrack"
+      },
+      {
+        "command": "vibetrack.openSettings",
+        "title": "⚙️ تنظیمات VibeTrack",
+        "category": "VibeTrack"
+      }
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "command": "vibetrack.analyzeChanges",
+          "group": "navigation",
+          "when": "scmProvider == git"
+        },
+        {
+          "command": "vibetrack.analyzeStaged",
+          "group": "navigation",
+          "when": "scmProvider == git"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "vibetrack.analyzeChanges",
+          "when": "gitOpenRepositoryCount != 0"
+        },
+        {
+          "command": "vibetrack.analyzeStaged",
+          "when": "gitOpenRepositoryCount != 0"
+        },
+        {
+          "command": "vibetrack.compareCommits",
+          "when": "gitOpenRepositoryCount != 0"
+        },
+        {
+          "command": "vibetrack.analyzeCommitMessage",
+          "when": "gitOpenRepositoryCount != 0"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "VibeTrack",
+      "properties": {
+        "vibetrack.aiEndpoint": {
+          "type": "string",
+          "default": "http://localhost:1234/v1/chat/completions",
+          "description": "AI API endpoint URL"
+        },
+        "vibetrack.aiModel": {
+          "type": "string",
+          "default": "mistralai/mathstral-7b-v0.1",
+          "description": "AI model name"
+        },
+        "vibetrack.persianMode": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use Persian language for analysis"
+        },
+        "vibetrack.autoSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically save analysis reports"
+        },
+        "vibetrack.exportFormat": {
+          "type": "string",
+          "enum": ["markdown", "json", "html"],
+          "default": "markdown",
+          "description": "Default export format for reports"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}
