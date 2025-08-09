@@ -128,24 +128,24 @@ def get_git_status():
                 filename = line[3:]
                 
                 if status == '??':
-                    status_lines.append(f"🆕 [red]فایل جدید:[/red] {filename}")
+                    status_lines.append(f"🆕 [red]New file:[/red] {filename}")
                 elif status[0] == 'M':
-                    status_lines.append(f"📝 [yellow]تغییر یافته (staged):[/yellow] {filename}")
+                    status_lines.append(f"📝 [yellow]Modified (staged):[/yellow] {filename}")
                 elif status[1] == 'M':
-                    status_lines.append(f"📝 [blue]تغییر یافته (unstaged):[/blue] {filename}")
+                    status_lines.append(f"📝 [blue]Modified (unstaged):[/blue] {filename}")
                 elif status[0] == 'A':
-                    status_lines.append(f"➕ [green]اضافه شده:[/green] {filename}")
+                    status_lines.append(f"➕ [green]Added:[/green] {filename}")
                 elif status[0] == 'D':
-                    status_lines.append(f"❌ [red]حذف شده:[/red] {filename}")
+                    status_lines.append(f"❌ [red]Deleted:[/red] {filename}")
                 elif status[0] == 'R':
-                    status_lines.append(f"🔄 [cyan]تغییر نام:[/cyan] {filename}")
+                    status_lines.append(f"🔄 [cyan]Renamed:[/cyan] {filename}")
                 else:
-                    status_lines.append(f"❓ [dim]وضعیت نامشخص ({status}):[/dim] {filename}")
+                    status_lines.append(f"❓ [dim]Unknown status ({status}):[/dim] {filename}")
         
         return '\n'.join(status_lines)
         
     except subprocess.CalledProcessError:
-        return "❌ خطا در دریافت وضعیت Git"
+        return "❌ Error getting Git status"
 
 def get_current_branch():
     """Get current Git branch"""
@@ -184,4 +184,4 @@ def get_recent_commits(count=5):
         return '\n'.join(commit_lines)
         
     except subprocess.CalledProcessError:
-        return "❌ خطا در دریافت کامیت‌ها"
+        return "❌ Error getting commits"
