@@ -1,6 +1,6 @@
 {
   "name": "vibetrack-vscode",
-  "displayName": "VibeTrack - دستیار شخصی برای Vibe Coders",
+  "displayName": "VibeTrack - AI-powered Git change analyzer",
   "description": "AI-powered Git change analyzer directly in VS Code",
   "version": "0.1.0",
   "publisher": "alireza-taheri",
@@ -16,8 +16,8 @@
     "diff",
     "ai",
     "analysis",
-    "persian",
-    "vibe-coding"
+    "code-review",
+    "developer-tools"
   ],
   "activationEvents": [
     "onCommand:vibetrack.analyzeChanges",
@@ -30,27 +30,27 @@
     "commands": [
       {
         "command": "vibetrack.analyzeChanges",
-        "title": "😵 چی شده؟! - تحلیل تغییرات",
+        "title": "🔍 Analyze Current Changes",
         "category": "VibeTrack"
       },
       {
         "command": "vibetrack.analyzeStaged",
-        "title": "🎵 تحلیل فایل‌های Staged",
+        "title": "🎭 Analyze Staged Files",
         "category": "VibeTrack"
       },
       {
         "command": "vibetrack.compareCommits",
-        "title": "📖 مقایسه کامیت‌ها",
+        "title": "📖 Compare Commits",
         "category": "VibeTrack"
       },
       {
         "command": "vibetrack.analyzeCommitMessage",
-        "title": "📝 تحلیل پیام کامیت",
+        "title": "📝 Analyze Commit Message",
         "category": "VibeTrack"
       },
       {
         "command": "vibetrack.openSettings",
-        "title": "⚙️ تنظیمات VibeTrack",
+        "title": "⚙️ VibeTrack Settings",
         "category": "VibeTrack"
       }
     ],
@@ -99,10 +99,10 @@
           "default": "mistralai/mathstral-7b-v0.1",
           "description": "AI model name"
         },
-        "vibetrack.persianMode": {
+        "vibetrack.englishMode": {
           "type": "boolean",
           "default": true,
-          "description": "Use Persian language for analysis"
+          "description": "Use English language for analysis (default)"
         },
         "vibetrack.autoSave": {
           "type": "boolean",
